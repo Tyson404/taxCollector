@@ -6,8 +6,6 @@
 package taxcollectorassignment;
 import java.util.Scanner;
 /**
- *
- * @author 25quangt
  */
 public class TaxCollectorAssignment {
     private static Scanner scanner = new Scanner(System.in);
