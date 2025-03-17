@@ -33,5 +33,18 @@ public class TaxCollectorAssignment {
         }
         return choice; //placeholder
     }
-    
+
+    public static int[] addToUser(int userScore, int userChoice, int[]numberList) {
+        userScore += userChoice;
+        int[] numberList2;
+        numberList2 = new int[numberList.length - 1];
+        for (int i = 0, k = 0; i < numberList.length; i++) {
+            if (i == userChoice - 1)
+                continue;
+            
+              numberList2[k++] = numberList[i];
+        }
+
+        return numberList2;
+    }
 }
