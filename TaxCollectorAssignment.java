@@ -16,7 +16,7 @@ public class TaxCollectorAssignment {
         // TODO code application logic here
     }
 
-    public static int[] removeChoice(int userChoice, int[]numberList) {
+    public static int[] removeChoice(int userChoice, int[]numberList) { //needs testing
         //add score in main instead of here
         int[] numberList2;
         numberList2 = new int[numberList.length - 1];
@@ -29,7 +29,7 @@ public class TaxCollectorAssignment {
         return numberList2;
     }
 
-    public static int userChoice(int[] numberList) {
+    public static int userChoice(int[] numberList) { //needs testing
     int choice = 0;
     int highestNumber = (numberList.length - 1);
     boolean existsInList = false;
@@ -60,7 +60,7 @@ public class TaxCollectorAssignment {
     }
 
     public static int addToCollector(int userChoice, int collectorScore, int[] numberList) { //if noDivisors == true, userChoice will be set to 1 in main
-        for (int i = 0; i < numberList.length; i++) {
+        for (int i = 0; i < numberList.length; i++) { //needs testing
             if (numberList[i] % userChoice == 0) {
                 collectorScore += numberList[i];
             }
@@ -89,7 +89,7 @@ public class TaxCollectorAssignment {
         return numberList2;
     }
 
-    public static boolean noDivisors(int[] numberList) {
+    public static boolean noDivisors(int[] numberList) { //needs testing
         boolean noDivisors = true;
         int k = 0;
         for (int i = 0; i < numberList.length; i++) {
