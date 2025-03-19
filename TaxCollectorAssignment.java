@@ -88,4 +88,22 @@ public class TaxCollectorAssignment {
         }
         return numberList2;
     }
+
+    public static boolean noDivisors(int[] numberList) {
+        boolean noDivisors = true;
+        int k = 0;
+        for (int i = 0; i < numberList.length; i++) {
+            while (k < numberList.length - 1) {
+                if (numberList[i] % numberList[k] == 0 && numberList[i] != numberList[k]) {
+                    noDivisors = false;
+                }
+                k++;
+            }
+            k = 0;
+        }
+        return noDivisors; //instead, have the removal of all numbers happen in addToCollector, just set the divisor to 1 lol.
+        //tl;dr if (noDivisors == true), userChoice == 1
+    }
+
+    
 }
