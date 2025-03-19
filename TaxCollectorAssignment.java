@@ -33,7 +33,7 @@ public class TaxCollectorAssignment {
     int choice = 0;
     int highestNumber = (numberList.length - 1);
     boolean existsInList = false;
-    System.out.println("guess");
+    System.out.println("Pick a number!");
     try {
     choice = scanner.nextInt();
     } catch (Exception m) {}
@@ -43,7 +43,7 @@ public class TaxCollectorAssignment {
         }
     }
     while (choice < 1 || choice > numberList[highestNumber] || existsInList == false) {
-        System.out.println("again");
+        System.out.println("Please pick a valid option from the list.");
         System.out.println("choice = " + choice);
         scanner.nextLine();
         try {
