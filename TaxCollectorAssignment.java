@@ -44,7 +44,7 @@ public class TaxCollectorAssignment {
     }
     while (choice < 1 || choice > numberList[highestNumber] || existsInList == false) {
         System.out.println("Please pick a valid option from the list.");
-        System.out.println("choice = " + choice);
+        System.out.println("choice = " + choice); //testing print
         scanner.nextLine();
         try {
         choice = scanner.nextInt();
