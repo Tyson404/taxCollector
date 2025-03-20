@@ -105,5 +105,30 @@ public class TaxCollectorAssignment {
         //tl;dr if (noDivisors == true), userChoice == 1
     }
 
-    
+    public static int[] ceilingNumber() {
+    System.out.print("Please enter a ceiling number: ");
+    Scanner input = new Scanner(System.in);
+       while (!input.hasNextInt()) {
+        System.out.println("Number must be a positive integer:");
+        input.nextLine();
+}   
+        int n = input.nextInt();
+        while (n <= 0) {
+        System.out.println("Number must be a positive integer:");
+        while (!input.hasNextInt()) {
+            System.out.println("Number must be a positive integer:");
+            input.next();
+}
+        n = input.nextInt();
+}
+
+        int[] array = new int[n];
+        for (int i = 0; i < n; i++) {
+        array[i] = i + 1;
+}       input.close();
+        return array;
+}
+}
+
+
 }
