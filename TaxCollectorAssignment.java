@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package taxcollectorassignment;
-import java.util.Scanner;
+import java.util.*;
 /**
  */
 public class TaxCollectorAssignment {
@@ -111,24 +111,32 @@ public class TaxCollectorAssignment {
        while (!input.hasNextInt()) {
         System.out.println("Number must be a positive integer:");
         input.nextLine();
-}   
+        }   
         int n = input.nextInt();
         while (n <= 0) {
         System.out.println("Number must be a positive integer:");
         while (!input.hasNextInt()) {
             System.out.println("Number must be a positive integer:");
             input.next();
-}
+        }
         n = input.nextInt();
-}
+        }
 
         int[] array = new int[n];
         for (int i = 0; i < n; i++) {
         array[i] = i + 1;
-}       input.close();
+        }
+        input.close();
         return array;
-}
+    }
+
+    public static void displayScreen(int userScore, ArrayList<Integer> userNumbers, int collectorScore, int[] collectorNumbers, int[] numberList) {
+        System.out.println("Current Board:");
+        System.out.println(Arrays.toString(numberList)); //userNumbers will be made in main
+        System.out.println("User's Score: " + userNumbers + " = " + userScore); //the ArrayList thing is just a dynamic version of arrays, its better for changing array sizes
+        System.out.println("Collector's Score: " + Arrays.toString(collectorNumbers) + " = " + collectorScore);
+    }
 }
 
 
-}
+
