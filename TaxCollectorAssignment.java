@@ -61,7 +61,7 @@ public class TaxCollectorAssignment {
 
     public static int addToCollector(int userChoice, int collectorScore, int[] numberList) { //if noDivisors == true, userChoice will be set to 1 in main
         for (int i = 0; i < numberList.length; i++) { //needs testing
-            if (numberList[i] % userChoice == 0) {
+            if (userChoice % numberList[i] == 0) {
                 collectorScore += numberList[i];
             }
         }
@@ -72,14 +72,14 @@ public class TaxCollectorAssignment {
         int listSize = 0;
         int[] numberList2;
         for (int i = 0; i < numberList.length; i++) {
-            if (numberList[i] % userChoice != 0) {
+            if (userChoice % numberList[i] != 0) {
                 listSize += 1;
             }
         }
         numberList2 = new int[listSize];
         int k = 0;
         for (int i = 0; i < numberList.length; i++) {
-            if (numberList[i] % userChoice != 0) {
+            if (userChoice % numberList[i] != 0) {
                 try {
                 numberList2[k] = numberList[i];
                 k += 1;
@@ -135,6 +135,27 @@ public class TaxCollectorAssignment {
         System.out.println(Arrays.toString(numberList)); //userNumbers will be made in main
         System.out.println("User's Score: " + userNumbers + " = " + userScore); //the ArrayList thing is just a dynamic version of arrays, its better for changing array sizes
         System.out.println("Collector's Score: " + Arrays.toString(collectorNumbers) + " = " + collectorScore);
+    }
+    
+    public static int[] collectorNumbers(int userChoice, int[] numberList) {
+        int listSize = 0; //for the userNumbers, just have main create an array to add userchoice to
+        int[] numberList2;
+        for (int i = 0; i < numberList.length; i++) {
+            if (userChoice % numberList[i] == 0 && userChoice > numberList[i]) {
+                listSize += 1;
+            }
+        }
+        numberList2 = new int[listSize];
+        int k = 0;
+        for (int i = 0; i < numberList.length; i++) {
+            if (userChoice % numberList[i] == 0 && userChoice > numberList[i]) {
+                try {
+                numberList2[k] = numberList[i];
+                k += 1;
+                } catch (Exception m) {}
+            }
+        }
+        return numberList2;
     }
 }
 
