@@ -12,8 +12,38 @@ public class TaxCollectorAssignment {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void mainGame(String[] args) {
         // TODO code application logic here
+        System.out.println("Welcome to The Tax Collector Game!");
+        int[] numberList = ceilingNumber();
+        int userScore = 0;
+        int collectorScore = 0;
+        ArrayList<Integer> userNumbers = new ArrayList<Integer>();
+        ArrayList<Integer> collectorNumbers = new ArrayList<Integer>();
+        boolean placeholder = true; //this will be replaced by end() at the end of the main loop
+        while (true) {
+            displayScreen(userScore, userNumbers, collectorScore, collectorNumbers, numberList);
+            int userChoice = userChoice(numberList);
+            userScore += userChoice;
+            userNumbers.add(userChoice);
+            numberList = removeChoice(userChoice, numberList);
+            collectorScore = addToCollector(userChoice, collectorScore, numberList);
+            collectorNumbers = collectorNumbers(userChoice, collectorNumbers, numberList);
+            numberList = removeDivisors(userChoice, numberList);
+            boolean noDivisors = noDivisors(numberList);
+            if (noDivisors) {
+                System.out.println("No More Divisors Left!");
+                for (int i = 0; i < numberList.length; i++) {
+                    collectorScore += numberList[i];
+                    collectorNumbers.add(numberList[i]);
+                }
+                numberList = new int[0];
+            }
+            if (placeholder == false) {
+                scanner.close();
+                break;
+            }
+        }
     }
 
     public static int[] removeChoice(int userChoice, int[]numberList) { //needs testing
@@ -137,25 +167,13 @@ public class TaxCollectorAssignment {
         System.out.println("Collector's Score: " + Arrays.toString(collectorNumbers) + " = " + collectorScore);
     }
     
-    public static int[] collectorNumbers(int userChoice, int[] numberList) {
-        int listSize = 0; //for the userNumbers, just have main create an array to add userchoice to
-        int[] numberList2;
+    public static ArrayList<Integer> collectorNumbers(int userChoice, ArrayList<Integer> collectorNumbers, int[] numberList) {
         for (int i = 0; i < numberList.length; i++) {
             if (userChoice % numberList[i] == 0 && userChoice > numberList[i]) {
-                listSize += 1;
+                collectorNumbers.add(numberList[i]);
             }
         }
-        numberList2 = new int[listSize];
-        int k = 0;
-        for (int i = 0; i < numberList.length; i++) {
-            if (userChoice % numberList[i] == 0 && userChoice > numberList[i]) {
-                try {
-                numberList2[k] = numberList[i];
-                k += 1;
-                } catch (Exception m) {}
-            }
-        }
-        return numberList2;
+        return collectorNumbers;
     }
 }
 
