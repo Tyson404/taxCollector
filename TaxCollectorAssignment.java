@@ -175,6 +175,18 @@ public class TaxCollectorAssignment {
         }
         return collectorNumbers;
     }
+    public static void end(int userScore, int collectorScore, int[] ceilingNumber) {
+        if (ceilingNumber.length == 0) {
+            System.out.println("Game Over");
+            if (userScore > collectorScore) {
+            System.out.println("You Win! Your score: " + userScore + "  Collector's score: " + collectorScore);
+            } else if (userScore < collectorScore) {
+            System.out.println("You Lost! Tax collector wins. Your score: " + userScore + " | Collector's score: " + collectorScore);
+            } else {
+            System.out.println("It's a Tie! Both scores: " + userScore);
+            }
+        }
+    }
 }
 
 
