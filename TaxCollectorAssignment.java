@@ -12,17 +12,15 @@ public class TaxCollectorAssignment {
     /**
      * @param args the command line arguments
      */
-    public static void mainGame(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) {
         System.out.println("Welcome to The Tax Collector Game!");
-        int[] numberList = ceilingNumber();
+        int[] numberList = ceilingNumber(); //generates the numbers being used, & various objects used in the functions
         int userScore = 0;
         int collectorScore = 0;
         ArrayList<Integer> userNumbers = new ArrayList<Integer>();
         ArrayList<Integer> collectorNumbers = new ArrayList<Integer>();
-        boolean placeholder = true; //this will be replaced by end() at the end of the main loop
         while (true) {
-            displayScreen(userScore, userNumbers, collectorScore, collectorNumbers, numberList);
+            displayScreen(userScore, userNumbers, collectorScore, collectorNumbers, numberList); //the main printer, prints what numbers are left & the user & collectors scores
             int userChoice = userChoice(numberList);
             userScore += userChoice;
             userNumbers.add(userChoice);
@@ -39,14 +37,15 @@ public class TaxCollectorAssignment {
                 }
                 numberList = new int[0];
             }
-            if (placeholder == false) {
+            end(userScore, collectorScore, numberList);
+            if (numberList.length == 0) {
                 scanner.close();
                 break;
             }
         }
     }
-
-    public static int[] removeChoice(int userChoice, int[]numberList) { //needs testing
+    
+    public static int[] removeChoice(int userChoice, int[]numberList) {
         //add score in main instead of here
         int[] numberList2;
         numberList2 = new int[numberList.length - 1];
@@ -59,7 +58,7 @@ public class TaxCollectorAssignment {
         return numberList2;
     }
 
-    public static int userChoice(int[] numberList) { //needs testing
+    public static int userChoice(int[] numberList) {
     int choice = 0;
     int highestNumber = (numberList.length - 1);
     boolean existsInList = false;
@@ -74,7 +73,6 @@ public class TaxCollectorAssignment {
     }
     while (choice < 1 || choice > numberList[highestNumber] || existsInList == false) {
         System.out.println("Please pick a valid option from the list.");
-        System.out.println("choice = " + choice); //testing print
         scanner.nextLine();
         try {
         choice = scanner.nextInt();
@@ -85,13 +83,12 @@ public class TaxCollectorAssignment {
             }
         }
     }
-    scanner.close();
     return choice;
     }
 
     public static int addToCollector(int userChoice, int collectorScore, int[] numberList) { //if noDivisors == true, userChoice will be set to 1 in main
-        for (int i = 0; i < numberList.length; i++) { //needs testing
-            if (userChoice % numberList[i] == 0) {
+        for (int i = 0; i < numberList.length; i++) { 
+            if (userChoice % numberList[i] == 0 && userChoice > numberList[i]) {
                 collectorScore += numberList[i];
             }
         }
@@ -119,7 +116,7 @@ public class TaxCollectorAssignment {
         return numberList2;
     }
 
-    public static boolean noDivisors(int[] numberList) { //needs testing
+    public static boolean noDivisors(int[] numberList) {
         boolean noDivisors = true;
         int k = 0;
         for (int i = 0; i < numberList.length; i++) {
@@ -131,40 +128,37 @@ public class TaxCollectorAssignment {
             }
             k = 0;
         }
-        return noDivisors; //instead, have the removal of all numbers happen in addToCollector, just set the divisor to 1 lol.
-        //tl;dr if (noDivisors == true), userChoice == 1
+        return noDivisors;
     }
 
     public static int[] ceilingNumber() {
     System.out.print("Please enter a ceiling number: ");
-    Scanner input = new Scanner(System.in);
-       while (!input.hasNextInt()) {
+    while (!scanner.hasNextInt()) {
         System.out.println("Number must be a positive integer:");
-        input.nextLine();
+        scanner.nextLine();
         }   
-        int n = input.nextInt();
+        int n = scanner.nextInt();
         while (n <= 0) {
         System.out.println("Number must be a positive integer:");
-        while (!input.hasNextInt()) {
+        while (!scanner.hasNextInt()) {
             System.out.println("Number must be a positive integer:");
-            input.next();
+            scanner.next();
         }
-        n = input.nextInt();
+        n = scanner.nextInt();
         }
 
         int[] array = new int[n];
         for (int i = 0; i < n; i++) {
         array[i] = i + 1;
         }
-        input.close();
         return array;
     }
 
-    public static void displayScreen(int userScore, ArrayList<Integer> userNumbers, int collectorScore, int[] collectorNumbers, int[] numberList) {
+    public static void displayScreen(int userScore, ArrayList<Integer> userNumbers, int collectorScore, ArrayList<Integer> collectorNumbers, int[] numberList) {
         System.out.println("Current Board:");
-        System.out.println(Arrays.toString(numberList)); //userNumbers will be made in main
-        System.out.println("User's Score: " + userNumbers + " = " + userScore); //the ArrayList thing is just a dynamic version of arrays, its better for changing array sizes
-        System.out.println("Collector's Score: " + Arrays.toString(collectorNumbers) + " = " + collectorScore);
+        System.out.println(Arrays.toString(numberList)); 
+        System.out.println("User's Score: " + userNumbers + " = " + userScore);
+        System.out.println("Collector's Score: " + collectorNumbers + " = " + collectorScore);
     }
     
     public static ArrayList<Integer> collectorNumbers(int userChoice, ArrayList<Integer> collectorNumbers, int[] numberList) {
@@ -175,6 +169,7 @@ public class TaxCollectorAssignment {
         }
         return collectorNumbers;
     }
+    
     public static void end(int userScore, int collectorScore, int[] ceilingNumber) {
         if (ceilingNumber.length == 0) {
             System.out.println("Game Over");
