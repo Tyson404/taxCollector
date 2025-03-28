@@ -181,6 +181,45 @@ public class TaxCollectorAssignment {
             System.out.println("It's a Tie! Both scores: " + userScore);
             }
         }
+    public static void noDivisorsTest() {
+        System.out.println("Testing noDivisors...");
+
+        int[] testInput = {1,2,3,4,5,6,7,8,9,10};
+        boolean expected = false; 
+        boolean actual = noDivisors(testInput);
+
+        if (actual == expected) {
+            System.out.println("Test 1 passed");
+        } else {
+            System.out.println("Test 1 failed. Expected " + expected + ", got " + actual);
+        }
+        int[] testInput2 = {5,7,11,13,17};
+        boolean expected2 = true; 
+        boolean actual2 = noDivisors(testInput2);
+
+        if (actual2 == expected2) {
+            System.out.println("Test 2 passed");
+        } else {
+            System.out.println("Test 2 failed. Expected " + expected2 + ", got " + actual2);
+    
+        }   int[] testInput3 = {4,4,4,4,4,4};
+        boolean expected3 = false; 
+        boolean actual3 = noDivisors(testInput3);
+
+        if (actual3 == expected3) {
+        System.out.println("Test 3 passed");
+        } else {
+        System.out.println("Test 3 failed. Expected " + expected3 + ", got " + actual3);
+        }
+        int[] testInput4 = {5};
+        boolean expected4 = true; 
+        boolean actual4 = noDivisors(testInput4);
+
+        if (actual4 == expected4) {
+            System.out.println("Test 4 passed");
+        } else {
+            System.out.println("Test 4 failed. Expected " + expected4 + ", got " + actual4);
+    }
     }
 }
 
